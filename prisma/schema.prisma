@@ -9,3 +9,22 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model Land {
+  id          Int    @id @default(autoincrement())
+  name        String     @db.VarChar(255)
+  active      Boolean     @default(false)
+  bank_slips  BankSlip[]
+  createdAt   DateTime
+}
+
+model BankSlip {
+  id          Int    @id @default(autoincrement())
+  name_receiver String @db.VarChar(255)
+  land        Land @relation(fields: [landId], references: [id])
+  landId      Int
+  value       Float
+  payment_code String @db.VarChar(255)
+  active      Boolean     @default(false)
+  createdAt   DateTime
+}
