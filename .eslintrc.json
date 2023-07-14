@@ -1,3 +1,9 @@
 {
-    "extends": "@rafyamada/eslint-config-defaults/node"
+    "env": {
+        "jest": true
+    },
+    "extends": "@rafyamada/eslint-config-defaults/node",
+    "rules": {
+        "no-useless-constructor": "off"
+    }
 }
