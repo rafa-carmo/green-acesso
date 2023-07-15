@@ -10,12 +10,16 @@ export interface FindManyRequest {
 export class FilterBankSplits {
   constructor(private readonly bankSlipRepository: BankSlipRepository) {}
   async execute(request: FindManyRequest) {
-    if (request.initialValue || request.finalValue) {
-      if (isNaN(request.finalValue!) && isNaN(request.initialValue!)) {
-        throw new Error('Valor inicial e final precisam ser números')
-      }
+    if (request.initialValue && isNaN(request.initialValue!)) {
+      throw new Error('Valor inicial deve ser um número')
+    }
+    if (request.finalValue && isNaN(request.finalValue!)) {
+      throw new Error('Valor final deve ser um número')
+    }
+    if (request.idLand && isNaN(request.idLand!)) {
+      throw new Error('Id do lote deve ser um número')
     }
 
-    this.bankSlipRepository.findMany({ ...request })
+    return this.bankSlipRepository.findMany({ ...request })
   }
 }

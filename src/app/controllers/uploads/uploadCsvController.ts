@@ -21,11 +21,7 @@ export class UploadCsvController {
     const fields = ['name', 'unidade', 'valor', 'linha_digitavel']
     const file = request!.file
 
-    response
-      .status(200)
-      .send(
-        'Arquivo carregado com sucesso, assim que estiver concluido enviaremos um email para informa-lo',
-      )
+    response.status(200).send('Arquivo carregado com sucesso')
 
     const readStream = createReadStream(file!.path)
       .pipe(parse({ delimiter: ';', from_line: 2 }))

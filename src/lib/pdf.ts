@@ -1,4 +1,5 @@
 import { ToDomainResponse } from '@/types/requestBankSlip'
+import { simpleFormatDate } from '@/utils/formatDate'
 import { convertToCurrency } from '@/utils/valueConvert'
 import fs from 'node:fs'
 import path from 'node:path'
@@ -136,6 +137,9 @@ export async function createPdf({ keys, values }: CreatePdfProps) {
     })
   }
 
-  await fs.promises.writeFile('file.pdf', await newPdf.save())
+  await fs.promises.writeFile(
+    `relatorios/${simpleFormatDate()}.pdf`,
+    await newPdf.save(),
+  )
   return await newPdf.saveAsBase64({ dataUri: true })
 }

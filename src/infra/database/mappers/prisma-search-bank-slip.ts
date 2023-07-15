@@ -1,14 +1,15 @@
 import { FindManyRequest } from '@/app/use-cases/bankSlip/filter-bank-slips'
 import { DomainFindManyRequest } from '@/types/requestBankSlip'
+import { convertToNumberIfPossible } from '@/utils/convertNumber'
 import { BankSlip as RawBankSlip } from '@prisma/client'
 
 export class PrismaSearchBankSlip {
   static toPrisma(bankSlip: DomainFindManyRequest): FindManyRequest {
     return {
       name: bankSlip.nome,
-      initialValue: bankSlip.valor_inicial && Number(bankSlip.valor_inicial),
-      finalValue: bankSlip.valor_final && Number(bankSlip.valor_final),
-      idLand: bankSlip.id_lote && Number(bankSlip.id_lote),
+      initialValue: convertToNumberIfPossible(bankSlip.valor_inicial),
+      finalValue: convertToNumberIfPossible(bankSlip.valor_final),
+      idLand: convertToNumberIfPossible(bankSlip.id_lote),
     }
   }
   static toDomain(raw: RawBankSlip) {

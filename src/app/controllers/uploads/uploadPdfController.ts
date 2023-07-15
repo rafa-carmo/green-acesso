@@ -14,9 +14,7 @@ export class UploadPdfController {
     if (!request.file) {
       response.status(400).send('No file')
     }
-    response.send(
-      'Arquivo carregado com sucesso, assim que estiver concluido enviaremos um email para informa-lo',
-    )
+    response.send('Arquivo carregado com sucesso')
     const filePath = request.file!.path
 
     const readStream = readFileSync(filePath)
@@ -34,7 +32,7 @@ export class UploadPdfController {
       )
 
       if (!payerDatabase) {
-        console.log('Payer not found')
+        console.error('Payer not found')
         continue
       }
 
