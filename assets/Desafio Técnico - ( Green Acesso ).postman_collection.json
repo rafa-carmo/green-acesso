@@ -1,0 +1,88 @@
+{
+	"info": {
+		"_postman_id": "fa27027c-a567-437e-bef2-3cc8ae5c3d44",
+		"name": "Desafio Técnico - ( Green Acesso )",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "28550352"
+	},
+	"item": [
+		{
+			"name": "Upload CSV",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/User/Documents/nome_lote.csv"
+						}
+					]
+				},
+				"url": "http://localhost:4000/upload_csv"
+			},
+			"response": []
+		},
+		{
+			"name": "Upload PDF",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "file",
+							"type": "file",
+							"src": "/D:/User/Documents/boletos.pdf"
+						}
+					]
+				},
+				"url": "http://localhost:4000/upload_pdf"
+			},
+			"response": []
+		},
+		{
+			"name": "Listar Boletos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:4000/boletos?nome=J",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"boletos"
+					],
+					"query": [
+						{
+							"key": "valor_inicial",
+							"value": "100",
+							"disabled": true
+						},
+						{
+							"key": "valor_final",
+							"value": "200",
+							"disabled": true
+						},
+						{
+							"key": "id_lote",
+							"value": "2",
+							"disabled": true
+						},
+						{
+							"key": "nome",
+							"value": "J"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
