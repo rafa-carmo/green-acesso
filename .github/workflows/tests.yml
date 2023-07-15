@@ -7,17 +7,19 @@ on:
     branches: [main]
 
 jobs:
-  laravel-tests:
+  tests:
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - name: Cache npm dependencies
+      - name: Cache node modules dependencies
         uses: actions/cache@v1
         with:
           path: node_modules
-          key: npm-${{ hashFiles('package-lock.json') }}
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/pnpm-lock.yaml') }}
+      - name: install pnpm
+        run: npm install -g pnpm
       - name: Install Dependencies
-        run: npm install
+        run: pnpm install
       - name: Run Tests
-        run: npm run test
+        run: pnpm test
