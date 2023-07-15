@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon -r tsconfig-paths/register src/index.ts",
     "test": "jest",
+    "start": "nodemon -r tsconfig-paths/register src/index.ts",
     "test:watch": "jest --watch"
   },
   "keywords": [],
