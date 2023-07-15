@@ -46,4 +46,11 @@ export class Land {
   public set bank_slips(value: number[] | undefined) {
     this.props.bank_slips = value
   }
+
+  public get createdAt(): Date {
+    if (this.props.createdAt) {
+      return this.props.createdAt
+    }
+    return new Date()
+  }
 }

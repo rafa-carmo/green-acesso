@@ -1,6 +1,6 @@
 export interface BankSlipProps {
   id?: number
-  name_receiver: string
+  name_payer: string
   landId?: number
   value: number
   payment_code: string
@@ -13,12 +13,12 @@ export class BankSlip {
   constructor(props: BankSlipProps) {
     this.props = {
       id: props.id,
-      name_receiver: props.name_receiver,
+      name_payer: props.name_payer,
       landId: props.landId,
       value: props.value,
       payment_code: props.payment_code,
-      active: !!props.active,
-      createdAt: props.createdAt && new Date(),
+      active: props.active,
+      createdAt: new Date(),
     }
   }
 
@@ -30,12 +30,12 @@ export class BankSlip {
     this.props.id = value
   }
 
-  public get name_receiver(): string {
-    return this.props.name_receiver
+  public get name_payer(): string {
+    return this.props.name_payer
   }
 
-  public set name_receiver(value: string) {
-    this.props.name_receiver = value
+  public set name_payer(value: string) {
+    this.props.name_payer = value
   }
 
   public get landId(): number | undefined {
@@ -63,7 +63,10 @@ export class BankSlip {
   }
 
   public get active(): boolean {
-    return !!this.props.active
+    if (this.props.active) {
+      return this.props.active
+    }
+    return true
   }
 
   public set active(value: boolean) {

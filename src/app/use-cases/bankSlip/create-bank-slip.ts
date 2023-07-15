@@ -3,10 +3,11 @@ import { BankSlipRepository } from '@/app/repositories/bankSlipRepository'
 import { LandRepository } from '@/app/repositories/landRepository'
 
 interface CreateBankSlipRequest {
-  name_receiver: string
+  name_payer: string
   value: number
   payment_code: string
   landName: string | number
+  active?: boolean
 }
 
 export class CreateBankSlip {

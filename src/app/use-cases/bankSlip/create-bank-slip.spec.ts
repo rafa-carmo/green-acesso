@@ -12,10 +12,18 @@ describe('create bank slip', () => {
 
     const createLand = new CreateBankSlip(landRepository, bankSlipRepository)
     await createLand.execute({
-      name_receiver: 'Teste',
+      name_payer: 'Teste',
       value: 1,
       payment_code: 'teste',
       landName: 17,
     })
+    await createLand.execute({
+      name_payer: 'Teste',
+      value: 1,
+      payment_code: 'teste',
+      landName: 17,
+    })
+
+    expect(bankSlipRepository.bankSlips).toHaveLength(2)
   })
 })

@@ -16,7 +16,7 @@ describe('list all bank slips', () => {
 
     await bankSlipRepository.create(
       new BankSlip({
-        name_receiver: 'Teste',
+        name_payer: 'Teste',
         landId: 1,
         value: 1,
         payment_code: 'teste',
@@ -24,7 +24,7 @@ describe('list all bank slips', () => {
     )
     await bankSlipRepository.create(
       new BankSlip({
-        name_receiver: 'Teste',
+        name_payer: 'Teste',
         landId: 2,
         value: 1,
         payment_code: 'teste',
