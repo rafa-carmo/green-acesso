@@ -1,6 +1,7 @@
 import { ToDomainResponse } from '@/types/requestBankSlip'
 import { simpleFormatDate } from '@/utils/formatDate'
 import { convertToCurrency } from '@/utils/valueConvert'
+import { createIfNotExsitsFolder } from '@/utils/virifyFolder'
 import fs from 'node:fs'
 import path from 'node:path'
 import { PDFDocument, PDFPage, StandardFonts } from 'pdf-lib'
@@ -18,6 +19,7 @@ export async function splitPdf({
   pdfFilePath,
   pageNumber,
 }: SplitPdfData) {
+  await createIfNotExsitsFolder(outputDirectory)
   const data = await fs.promises.readFile(pdfFilePath)
   const readPdf = await PDFDocument.load(data)
 
@@ -136,7 +138,7 @@ export async function createPdf({ keys, values }: CreatePdfProps) {
       })
     })
   }
-
+  await createIfNotExsitsFolder('relatorios')
   await fs.promises.writeFile(
     `relatorios/${simpleFormatDate()}.pdf`,
     await newPdf.save(),
