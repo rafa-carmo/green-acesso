@@ -20,9 +20,9 @@ model Land {
 
 model BankSlip {
   id          Int    @id @default(autoincrement())
-  name_receiver String @db.VarChar(255)
+  name_payer String @db.VarChar(255)
   land        Land @relation(fields: [landId], references: [id])
-  landId      Int
+  landId      Int @unique
   value       Float
   payment_code String @db.VarChar(255)
   active      Boolean     @default(false)

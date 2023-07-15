@@ -11,7 +11,7 @@ CREATE TABLE `Land` (
 -- CreateTable
 CREATE TABLE `BankSlip` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
-    `name_receiver` VARCHAR(255) NOT NULL,
+    `name_payer` VARCHAR(255) NOT NULL,
     `landId` INTEGER NOT NULL,
     `value` DOUBLE NOT NULL,
     `payment_code` VARCHAR(255) NOT NULL,
