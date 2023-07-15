@@ -12,16 +12,12 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Copy .env
-        run: php -r "file_exists('.env') || copy('.env.example', '.env');"
-      - name: Install Dependencies
-        run: composer install -q --no-ansi --no-interaction --no-scripts --no-progress --prefer-dist
       - name: Cache npm dependencies
         uses: actions/cache@v1
         with:
           path: node_modules
           key: npm-${{ hashFiles('package-lock.json') }}
-      - name: Run NPM Scripts
+      - name: Install Dependencies
         run: npm install
       - name: Run Tests
         run: npm run test
